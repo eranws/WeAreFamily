@@ -1,0 +1,112 @@
+<html>
+
+<head>
+	<style>
+
+		@font-face {
+			font-family: droid;
+			src: url(DroidSansMono.ttf);
+		}
+
+
+		body {
+			margin: 0;
+			background-color:black;
+			font-family: droid;
+			text-align: justify;
+
+		}
+
+		.marg
+		{
+			margin-top: 3%;
+			margin-right: 15%;
+			margin-left: 15%;
+		}
+
+
+		#imgs
+		{
+			margin-top: 5%;
+		}
+
+		#img-container
+		{
+			margin-left: auto;
+		    margin-right: auto;
+			display: block;
+		}
+
+		img
+		{
+			width: 16.6%; /* 1920 / 6 */
+		}
+
+
+
+
+		a {color: #00D0D0;}
+		h1   {
+			color:white;
+			font-size: 150%;
+		}
+		p    {
+			font-size: 100%;
+			color:white;
+			padding-bottom:20px;
+		}
+		#instructions
+		{
+			color:yellow;
+			font-weight: bold;
+		}
+
+		h6 	{
+			color:white;
+			text-align: center;
+
+			margin-top: 5%;
+			margin-right: 10%;
+			margin-left: 10%;
+		}
+
+	</style>
+</head>
+
+
+<body onkeypress="bodyKeypress(event);" onkeydown="bodyKeydown(event);">
+
+	<div class="marg">
+
+		<h1>GifWriter</h1>
+		<p>
+			GifWriter is a simple tool based on an alphabet created by typographer <a href="http://odedezer.com/about-oded-ezer-typography/">Oded Ezer</a> for <a href="http://odedezer.com/portfolio/we-are-family/">'We Are Family'</a>, a typographic-animated-gifs installation that make use of unsettling images and fragments from found online political, brutal, pornographic and other videos to create a new kind of typographic visual language.
+		</p>
+
+		<p id="instructions">
+			Simply type using A-Z and Spacebar
+		</p>
+	</div>
+
+	<div id="img-container">
+		<span id="imgs"></span>
+	</div>
+
+	<h6 class="marg"> 
+		&#169 Oded Ezer, 2015 |
+		Visual concept and design: <a href="http://odedezer.com/">Oded Ezer</a> |
+		Created for Practical Particles exhibition<br/> Curator: <a href="http://www.rgivati.com/">Reuven Givati</a> |
+		Software Development: <a href="http://eranws.github.io/">Eran Weissenstern</a> | 
+		Minisite: <a href="https://www.facebook.com/avishai.lapid">Avishai Lapid</a>, Eran Weissenstern
+	</h6>
+</body>
+
+<script defer>
+	document.getElementById("img-container").style.width=screen.width;
+</script>
+
+<script src = 'letterCount.js'></script>
+<script src = 'weAreFamily.js'></script>
+
+
+</html>

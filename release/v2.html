@@ -1,0 +1,185 @@
+<html>
+<style>
+
+	body {
+		margin: 0;
+	}
+
+	img
+	{
+		width: 320; /* 1920 / 6 */
+	}
+
+</style>
+
+<body onKeyPress="bodyKeyPress(event);">
+	<span id="imgs"></span>
+</body>
+
+<script src = 'letterCount.js'></script>
+
+<script>
+
+/*
+reordered gifs:
+E2 -> E1
+E5 -> E2
+E1 -> E5
+A2 -> A3
+A3 -> A2
+*/
+
+	String.prototype.replaceAt=function(index, character) {
+		return this.substr(0, index) + character + this.substr(index+character.length);
+	}
+
+
+	var init_str = 'we arefamily';
+	var str = init_str;
+	MAX_LEN = 12;
+    var pos = 6; //start from 2nd row
+
+    var resetCount = 0;
+
+    var timer;
+    var timeout_short = 1000;
+    var timeout_long = 10000;
+
+    function timerOn(t)
+    {
+    	clearTimeout(timer)
+    	timer = setTimeout(function() {
+    		resetChar();
+    	}, t);
+    }
+
+    function setChar(s)
+    {
+    	if (pos==6){str = str.substr(6, 11) + "      "};
+    	str = str.replaceAt(pos, s);
+
+    	if (++pos >= MAX_LEN)
+    	{
+    		pos = 6;
+    	}
+    	//console.log(pos, s, str);
+
+    	drawString(str)
+    }
+
+    function resetChar() {
+    	
+    	var offset = 0;
+
+    	var isWe = true;
+    	for (var i=6; i<12; i++)
+    	{
+    		if (str.charAt(i) != init_str.charAt(i-6) && str.charAt(i) != ' ')
+    		{
+    			isWe=false;
+    		}
+    	}
+
+    	if (str.substr(6, 6) == init_str.substr(0, 6) || str.substr(0, 6) == init_str.substr(0, 6)) //'we are'
+    	{
+   			offset = 0;
+   		}
+   		else if (isWe || pos == 6)
+   		{
+   			offset = -6;
+   		}
+
+   		setChar(init_str.charAt(pos + offset));
+   		
+   		if (str != init_str) timerOn(timeout_short);
+   	}
+
+    	function bodyKeyPress(a)
+    	{
+    		s = String.fromCharCode(a.charCode);
+    		setChar(s);
+    		timerOn(timeout_long);
+    	}
+
+
+    	function drawString(str)
+    	{
+    		var str = str.toUpperCase();
+
+    		var imgs = document.getElementById("imgs");
+    		imgs.innerText = "";
+
+    		currCount = {};
+
+    		for (i=0;i<str.length; i++)
+    		{
+            var g  = 1; //glyph index: eg. A1, A2, ... Ag
+
+            var c = str.charAt(i);
+
+            if (c != ' ')
+            {
+            	if (currCount[c]>=0) //exist
+            	{
+            		currCount[c]++;
+            	}
+            	else
+            	{
+            		currCount[c] = 0;
+            	}
+            	g = 1 + (currCount[c] % letterCount[c]);
+            	console.log(c,g);
+            }
+
+            var x = document.createElement("IMG");
+
+
+            x.setAttribute("src", "" + c + g +".gif");
+            imgs.appendChild(x);
+
+        }
+    }
+    drawString(str)
+
+/*
+
+    var images = {};
+    var max_ind={};
+
+    loadImages(function(){
+        edValueKeyPress();
+    });
+
+    function loadImages(callback) {
+    
+
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+
+        //var az = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var az = "ABC";//BCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+        for(var src in az) {
+            a=az[src]
+            images[a] = [];
+            max_ind[a] = 0;
+
+            for (var i=1; i<10; i++)
+            {
+                images[a][i] = new Image();
+                images[a][i].onload = function(a, b, c) {
+                    max_ind[a]++;
+                };
+                images[a][i].src = a + i + ".gif";
+
+            }
+
+        }
+    }
+
+    */
+</script>    
+
+</html>
