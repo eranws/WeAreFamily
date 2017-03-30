@@ -2,6 +2,8 @@ String.prototype.replaceAt=function(index, character) {
   return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
+var letterCount = {'A':3,'B':1,'C':1,'D':2,'E':6,'F':1,'G':1,'H':2,'I':2,'J':1,'K':1,'L':2,'M':1,'N':2,'O':2,'P':1,'Q':1,'R':2,'S':2,'T':3,'U':1,'V':1,'W':1,'X':1,'Y':1,'Z':1}
+var hebCharFixer = {47:'q',39:'w',1511:'e',1512:'r',1488:'t',1496:'y',1493:'u',1503:'i',1501:'o',1508:'p',1513:'a',1491:'s',1490:'d',1499:'f',1506:'g',1497:'h',1495:'j',1500:'k',1498:'l',1494:'z',1505:'x',1489:'c',1492:'v',1504:'b',1502:'n',1510:'m'}
 
 var init_str = 'we arefamily';
 var str = init_str;
@@ -128,9 +130,9 @@ function bodyKeypress(a)
   {
     keyOK = true;
   }
-  else if (cc in hcf)
+  else if (cc in hebCharFixer)
   {
-    s=hcf[cc];  
+    s=hebCharFixer[cc];  
     keyOK = true;
   }
   
@@ -187,42 +189,3 @@ function drawString(str)
 }
 drawString(str)
 
-/*
-
-var images = {};
-var max_ind={};
-
-loadImages(function(){
-  edValueKeyPress();
-});
-
-function loadImages(callback) {
-  
-  
-  var loadedImages = 0;
-  var numImages = 0;
-  // get num of sources
-  
-  //var az = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var az = "ABC";//BCDEFGHIJKLMNOPQRSTUVWXYZ";
-  
-  
-  for(var src in az) {
-    a=az[src]
-    images[a] = [];
-    max_ind[a] = 0;
-    
-    for (var i=1; i<10; i++)
-    {
-      images[a][i] = new Image();
-      images[a][i].onload = function(a, b, c) {
-        max_ind[a]++;
-      };
-      images[a][i].src = a + i + ".gif";
-      
-    }
-    
-  }
-}
-
-*/
