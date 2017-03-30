@@ -2,9 +2,6 @@ String.prototype.replaceAt=function(index, character) {
   return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
-//var init_screen_width = window.innerWidth;
-var init_screen_width = screen.width;
-var init_img_width = init_screen_width/6;
 
 var init_str = 'we arefamily';
 var str = init_str;
@@ -122,9 +119,29 @@ function bodyKeypress(a)
 {
   resetState = false;
 
-  s = String.fromCharCode(a.charCode);
-  setChar(s);   
-  timerOn(timeout_long);
+  var cc = a.charCode;
+  var keyOK = false;
+
+  s = String.fromCharCode(cc);
+  
+  if ((cc > 96 && cc < 123) || cc == 32) // in 'a-z', or space
+  {
+    keyOK = true;
+  }
+  else if (cc in hcf)
+  {
+    s=hcf[cc];  
+    keyOK = true;
+  }
+
+
+  console.log(s, a.charCode)
+  
+  if (keyOK)
+  {
+    setChar(s);   
+    timerOn(timeout_long);
+  }
 }
 
 
@@ -160,13 +177,10 @@ function drawString(str)
             {
               c = ''; // fix: space filename is 1.gif 
             }
-            
+
             var x = document.createElement("IMG");
-            
-            x.style.width= init_img_width;
 
-
-            x.setAttribute("src", "gifs/" + c + g +".gif");
+            x.setAttribute("src", "gifs/" + c + g + ".gif");
             imgs.appendChild(x);
 
           }
