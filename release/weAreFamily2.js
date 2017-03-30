@@ -124,19 +124,16 @@ function bodyKeypress(a)
 
   s = String.fromCharCode(cc);
   
-  if (cc > 122 || cc < 97) // not in 'a-z'
-  {
-    if (cc in hcf)
-    {
-      s=hcf[cc];  
-      keyOK = true;
-    }
-    
-  }
-  else
+  if ((cc > 96 && cc < 123) || cc == 32) // in 'a-z', or space
   {
     keyOK = true;
   }
+  else if (cc in hcf)
+  {
+    s=hcf[cc];  
+    keyOK = true;
+  }
+
 
   console.log(s, a.charCode)
   
