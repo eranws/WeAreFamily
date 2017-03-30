@@ -156,13 +156,17 @@ function drawString(str)
             	g = 1 + (currCount[c] % letterCount[c]);
             	console.log(c,g);
             }
-
+            else
+            {
+              c = ''; // fix: space filename is 1.gif 
+            }
+            
             var x = document.createElement("IMG");
             
             x.style.width= init_img_width;
 
 
-            x.setAttribute("src", "" + c + g +".gif");
+            x.setAttribute("src", "gifs/" + c + g +".gif");
             imgs.appendChild(x);
 
           }
