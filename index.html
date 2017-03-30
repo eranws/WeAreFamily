@@ -1,7 +1,36 @@
-<script language="javascript">
-    location.replace("release/v7.html");
-</script>
+<html>
+<style>
 
-<meta http-equiv="refresh" content="1; url=release/v7.html">
+	body {
+		margin: 0;
+		background-color: black;
+	}
 
-<a href="release/v7.html"><font face="arial,helvetica">My new page is here...</font></a>
+	img
+	{
+		width: 16.6%; /* 1920 / 6 */
+	}
+
+</style>
+
+<body onkeypress="bodyKeypress(event);" onkeydown="bodyKeydown(event);">
+	<span id="imgs"></span>
+</body>
+
+<script src = 'weAreFamily.js'></script>
+
+
+</html>
+
+<!--
+changelog:
+
+
+v7.html
+fixed width to 16.6%
+2017-03-30
+
+v6.html
+refactored out weAreFamily.js
+-->
+
